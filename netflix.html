@@ -10,6 +10,7 @@
     body {
       margin: 0;
       padding: 2rem 1rem;
+      padding-top: 120px; /* Added padding top for fixed elements */
       background: #141414 url('https://assets.nflxext.com/ffe/siteui/vlv3/80e51430-53b0-4e26-8727-4bcd6756c67a/d01cc43a-8209-4291-8dce-6f77dbd3b007/NP-en-20230522-popsignuptwoweeks-perspective_alpha_website_medium.jpg') center/cover no-repeat fixed;
       color: #d32f2f;
       font-family: 'Press Start 2P', cursive, monospace, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -261,25 +262,33 @@
 
     /* Responsive */
     @media (max-width: 520px) {
+      body {
+        padding-top: 110px; /* Slightly less on smaller screens */
+      }
+      .netflix-logo {
+        width: 60px;
+        height: 60px;
+        top: 15px;
+      }
+      .back-home {
+        top: 15px;
+        right: 15px;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
       .container {
-        padding: 1.8rem 2rem;
+        padding: 1.8rem 1.5rem;
         max-width: 95vw;
       }
       .subscription-item {
         font-size: 1rem;
-        padding: 1rem 1.5rem;
+        padding: 1rem 1.2rem;
       }
       .subscription-item::after {
-        bottom: 100%;
-        margin-bottom: 6px;
         font-size: 0.65rem;
         padding: 5px 10px;
-      }
-      .back-home {
-        padding: 8px 15px;
-        font-size: 0.9rem;
-        top: 15px;
-        right: 15px;
+        bottom: 100%;
+        margin-bottom: 6px;
       }
     }
   </style>
