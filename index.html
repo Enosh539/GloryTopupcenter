@@ -162,11 +162,10 @@
       border-radius: 10px;
       box-shadow: 0 0 15px #0ff;
       z-index: 1000;
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      animation: fadeIn 0.5s ease-in-out;
     }
 
     .announcement-popup a {
@@ -181,11 +180,6 @@
       font-size: 1.2rem;
       cursor: pointer;
       color: #000;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translate(-50%, -20px); }
-      to { opacity: 1; transform: translateX(-50%); }
     }
 
     @media (max-width: 600px) {
@@ -206,10 +200,10 @@
 <body>
 
   <!-- Announcement Popup -->
-  <div class="announcement-popup" id="popup">
+  <div class="announcement-popup" id="popup" role="alert" aria-live="polite">
     📢 New Updates on our WhatsApp Channel! 
-    <a href="https://whatsapp.com/channel/0029Vb64EDk0QeahklWkiZ2e" target="_blank">Join Now</a>
-    <button onclick="document.getElementById('popup').style.display='none'">×</button>
+    <a href="https://whatsapp.com/channel/0029Vb64EDk0QeahklWkiZ2e" target="_blank" rel="noopener noreferrer">Join Now</a>
+    <button aria-label="Close announcement" id="popup-close-btn">×</button>
   </div>
 
   <header>
@@ -245,8 +239,8 @@
   <section id="contact">
     <h2>Contact</h2>
     <div class="contact-buttons">
-      <a href="https://wa.me/9779708065981" class="whatsapp" target="_blank">📞 WhatsApp</a>
-      <a href="https://www.facebook.com/share/19g4Hj8pRh/" class="facebook" target="_blank">📘 Facebook</a>
+      <a href="https://wa.me/9779708065981" class="whatsapp" target="_blank" rel="noopener noreferrer">📞 WhatsApp</a>
+      <a href="https://www.facebook.com/share/19g4Hj8pRh/" class="facebook" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
       <a href="mailto:glorytopupcenter@gmail.com" class="email">📧 Email</a>
     </div>
   </section>
@@ -254,6 +248,31 @@
   <footer>
     &copy; 2025 Glory Top-Up Center. All rights reserved.
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const popup = document.getElementById('popup');
+      const closeBtn = document.getElementById('popup-close-btn');
+
+      // Show popup only if not shown in this session yet
+      if (!sessionStorage.getItem('announcementShown')) {
+        popup.style.display = 'flex';
+      }
+
+      closeBtn.addEventListener('click', () => {
+        // Fade out effect
+        popup.style.transition = 'opacity 0.4s ease';
+        popup.style.opacity = '0';
+
+        setTimeout(() => {
+          popup.style.display = 'none';
+        }, 400);
+
+        // Mark popup as shown in sessionStorage
+        sessionStorage.setItem('announcementShown', 'true');
+      });
+    });
+  </script>
 
 </body>
 </html>
