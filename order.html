@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🔥 Place Your Order - Glory Top-Up Center</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Russo+One&display=swap');
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #0f0c06, #1f1a0e);
+      font-family: 'Russo One', sans-serif;
+      color: #ffb347;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      background: #1e1b16;
+      border: 3px solid #ff4500;
+      border-radius: 14px;
+      max-width: 600px;
+      width: 100%;
+      padding: 2.5rem 2rem;
+      box-shadow:
+        0 0 20px #ff4500aa,
+        inset 0 0 30px #ff7000cc;
+      user-select: none;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.6rem;
+      color: #ff3f00;
+      text-shadow:
+        0 0 5px #ff3f00,
+        0 0 15px #ff6f22,
+        0 0 30px #ff4500;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      letter-spacing: 0.1em;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    label {
+      font-size: 1.1rem;
+      color: #ff9c4b;
+      font-weight: 600;
+      user-select: text;
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      font-family: 'Russo One', sans-serif;
+      outline: none;
+      box-shadow: inset 0 0 6px #ff6a0033;
+      background: #3b341e;
+      color: #ffdca9;
+      transition: box-shadow 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus {
+      box-shadow: 0 0 10px #ff4500;
+      background: #462f12;
+      color: #fff2e8;
+    }
+
+    button {
+      background: linear-gradient(90deg, #ff6a00, #ff3300);
+      color: white;
+      border: none;
+      padding: 16px 40px;
+      border-radius: 30px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      font-family: 'Russo One', sans-serif;
+      box-shadow:
+        0 0 12px #ff3300,
+        0 0 30px #ff6a00;
+      cursor: pointer;
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
+      user-select: none;
+      margin-top: 0.5rem;
+    }
+
+    button:hover,
+    button:focus {
+      background: linear-gradient(90deg, #ff3300, #ff6a00);
+      box-shadow:
+        0 0 20px #ff3300,
+        0 0 50px #ff6a00;
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      color: #ff6a00;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-decoration: none;
+      text-shadow: 0 0 4px #ff3300;
+      user-select: none;
+      transition: color 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .back-link:hover,
+    .back-link:focus {
+      color: #fff;
+      text-shadow: 0 0 10px #ff6a00;
+      outline: none;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.8rem 1.5rem;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      button {
+        padding: 14px 28px;
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container" role="main" aria-label="Place your order form">
+    <h1>🔥 Place Your Order</h1>
+    <form id="orderForm" novalidate>
+      <label for="name">Your Name *</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required autocomplete="name" />
+
+      <label for="game">Select Service *</label>
+      <select id="game" name="game" required>
+        <option value="" disabled selected>Choose a service</option>
+        <option value="Free Fire">Free Fire</option>
+        <option value="PUBG Mobile">PUBG Mobile</option>
+        <option value="Mobile Legends">Mobile Legends</option>
+        <option value="COD Mobile">COD Mobile</option>
+        <option value="Roblox">Roblox</option>
+        <option value="CapCut Premium">CapCut Premium</option>
+        <option value="Netflix Premium">Netflix Premium</option>
+      </select>
+
+      <label for="userId">Game ID / Account Email (optional)</label>
+      <input type="text" id="userId" name="userId" placeholder="Enter your Game ID or Email" autocomplete="off" />
+
+      <label for="amount">Amount / Subscription Details *</label>
+      <input type="text" id="amount" name="amount" placeholder="E.g., 1000 NPR or Monthly Subscription" required />
+
+      <button type="submit" aria-label="Submit your order">🔥 Submit Order</button>
+    </form>
+
+    <a href="index.html" class="back-link" aria-label="Back to home page">← Back to Home</a>
+  </main>
+
+  <script>
+    const form = document.getElementById('orderForm');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = encodeURIComponent(form.name.value.trim());
+      const game = encodeURIComponent(form.game.value);
+      const userId = encodeURIComponent(form.userId.value.trim());
+      const amount = encodeURIComponent(form.amount.value.trim());
+
+      if (!name || !game || !amount) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      let message = `Hello, I want to place an order:%0AName: ${name}%0AService: ${game}%0A`;
+      if (userId) {
+        message += `Game ID / Account Email: ${userId}%0A`;
+      }
+      message += `Details: ${amount}`;
+
+      const whatsappNumber = '9779708065981'; // Your WhatsApp number (no + or spaces)
+      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+      window.open(whatsappURL, '_blank');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>COD - Coming Soon | Glory Top-Up Center</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: url('https://images4.alphacoders.com/107/1075020.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-shadow: 1px 1px 4px #000;
+      position: relative;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 5, 5, 0.85);
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 600px;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.7);
+      border: 2px solid #3cfa3c;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #3cfa3c80;
+      user-select: none;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #3cfa3c;
+      text-shadow: 0 0 5px #3cfa3c, 0 0 12px #3cfa3c88;
+    }
+
+    p {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #cccccc;
+    }
+
+    .stay-tuned {
+      font-size: 1rem;
+      color: #aaa;
+      margin-bottom: 1.5rem;
+    }
+
+    .brand {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 3px;
+      text-shadow: 0 0 10px #3cfa3c;
+    }
+
+    /* Home Button */
+    .home-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      background-color: transparent;
+      border: 2px solid #3cfa3c;
+      color: #3cfa3c;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: 0.3s;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .home-button:hover {
+      background-color: #3cfa3c;
+      color: #000;
+      box-shadow: 0 0 15px #3cfa3c;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      p, .stay-tuned {
+        font-size: 1rem;
+      }
+      .content {
+        margin: 0 1rem;
+        padding: 1.5rem;
+      }
+      .home-button {
+        padding: 8px 15px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <a href="index.html" class="home-button">← Home</a>
+
+  <div class="content">
+    <h1>Call of Duty</h1>
+    <p>Coming Soon</p>
+    <div class="stay-tuned">Stay Tuned, Soldier!</div>
+    <div class="brand">Glory Top-Up Center</div>
+  </div>
+</body>
+</html>

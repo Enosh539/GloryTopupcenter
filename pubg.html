@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PUBG - Coming Soon | Glory Top-Up Center</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Russo One', sans-serif;
+      background: url('https://wallpapercave.com/wp/wp2530499.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #f0d97f;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-shadow: 1px 1px 0 #000, 2px 2px 5px rgba(0,0,0,0.7);
+      position: relative;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,10,0.8);
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 600px;
+      padding: 2rem;
+      background: rgba(25, 25, 25, 0.75);
+      border: 3px solid #f0d97f;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #f0d97f88;
+      user-select: none;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      border-bottom: 4px solid #f0d97f;
+      padding-bottom: 0.3rem;
+    }
+
+    p {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      color: #f0d97fcc;
+    }
+
+    .stay-tuned {
+      font-size: 1rem;
+      color: #ffffffcc;
+      margin-bottom: 1.5rem;
+    }
+
+    .brand {
+      font-size: 1rem;
+      font-weight: 900;
+      color: #ff4b4b;
+      letter-spacing: 4px;
+      text-shadow: 0 0 10px #ff4b4b, 0 0 20px #ff4b4b;
+    }
+
+    /* Home Button */
+    .home-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      background-color: transparent;
+      border: 2px solid #f0d97f;
+      color: #f0d97f;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: 0.3s;
+      font-family: 'Russo One', sans-serif;
+    }
+
+    .home-button:hover {
+      background-color: #f0d97f;
+      color: #000;
+      box-shadow: 0 0 15px #f0d97f;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      p, .stay-tuned {
+        font-size: 1rem;
+      }
+      .content {
+        margin: 0 1rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <a href="index.html" class="home-button">← Home</a>
+
+  <div class="content">
+    <h1>PUBG</h1>
+    <p>Coming Soon</p>
+    <div class="stay-tuned">Stay Tuned!</div>
+    <div class="brand">Glory Top-Up Center</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mobile Legends Diamond Rates</title>
+  <style>
+    @keyframes animateBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem 1rem;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(-45deg, #0077be, #00aaff, #004466, #001f3f);
+      background-size: 400% 400%;
+      animation: animateBG 12s ease infinite, fadeIn 1.2s ease-out;
+      color: #e0f7fa;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .top-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media(min-width: 600px) {
+      .top-options {
+        flex-direction: row;
+      }
+    }
+
+    .option-card {
+      flex: 1;
+      background: rgba(0, 77, 115, 0.8);
+      border: 1px solid #00d1ff99;
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 0 20px #00d1ff66;
+      text-align: center;
+      transition: 0.3s ease;
+      color: #a7e9ff;
+    }
+
+    .option-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 30px #00d1ffcc;
+    }
+
+    .option-card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 5px #00d1ffbb;
+    }
+
+    .option-card p {
+      color: #b2ebf2;
+      margin-bottom: 1.2rem;
+    }
+
+    .option-card a {
+      background: #00d1ff;
+      color: #002f44;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      display: inline-block;
+      transition: 0.3s ease;
+    }
+
+    .option-card a:hover {
+      background: #4de4ff;
+      box-shadow: 0 0 12px #4de4ff;
+    }
+
+    .card {
+      background: rgba(0, 51, 77, 0.9);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 209, 255, 0.25);
+      backdrop-filter: blur(10px);
+      margin-bottom: 3rem;
+      color: #a7e9ff;
+    }
+
+    h1 {
+      text-align: center;
+      color: #00d1ff;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px #00d1ffaa;
+    }
+
+    .rate-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    a.rate-card {
+      background: rgba(0, 209, 255, 0.15);
+      border-left: 5px solid #00d1ff;
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      color: #c0f0ff;
+      font-size: 1.05rem;
+      box-shadow: 0 0 10px #00d1ff66;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: 0.3s ease;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    a.rate-card:hover {
+      background: rgba(0, 209, 255, 0.3);
+      transform: scale(1.03);
+      box-shadow: 0 0 16px #00d1ffcc;
+      color: #002f44;
+    }
+
+    a.rate-card span {
+      font-size: 1.4rem;
+      margin-right: 0.5rem;
+    }
+
+    a.rate-card strong {
+      color: #00d1ff;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .order-btn {
+      display: block;
+      margin: 2rem auto 0;
+      background: #00d1ff;
+      color: #002f44;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s ease;
+      text-align: center;
+      box-shadow: 0 0 12px #00d1ff99;
+      cursor: pointer;
+      max-width: 220px;
+    }
+
+    .order-btn:hover {
+      background: #4de4ff;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #4de4ffcc;
+    }
+
+    a.back {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 10px 24px;
+      background: transparent;
+      color: #00d1ff;
+      border: 2px solid #00d1ff;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 0 8px #00d1ffcc;
+      transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      max-width: 160px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    a.back:hover {
+      background-color: #00d1ff;
+      color: #002f44;
+      box-shadow: 0 0 20px #00d1ffee;
+      text-decoration: none;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="top-options">
+      <div class="option-card">
+        <h2>🛡️ Twilight Pass</h2>
+        <p>Unlock exclusive heroes & skins monthly.</p>
+        <a href="https://wa.me/9779708065981?text=Hello%2C%20I%20want%20to%20buy%20the%20Twilight%20Pass%20for%20Mobile%20Legends" target="_blank" rel="noopener noreferrer">Subscribe</a>
+      </div>
+
+      <div class="option-card">
+        <h2>⚔️ Weekly Pass</h2>
+        <p>Weekly rewards & bonus diamonds.</p>
+        <a href="https://wa.me/9779708065981?text=Hello%2C%20I%20want%20to%20buy%20the%20Weekly%20Pass%20for%20Mobile%20Legends" target="_blank" rel="noopener noreferrer">Subscribe</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h1>💠 Mobile Legends Diamond Rates</h1>
+
+      <div class="rate-grid">
+        <a class="rate-card" href="https://wa.me/9779708065981?text=Hello%2C%20I%20want%20to%20buy%2051%20%2B%205%20Diamonds%20-%20Rs.%20145%20Mobile%20Legends" target="_blank" rel="noopener noreferrer">
+          <span>💎</span> 51 + 5 Diamonds <strong>Rs. 145</strong>
+        </a>
+        <a class="rate-card" href="https://wa.me/9779708065981?text=Hello%2C%20I%20want%20to%20buy%2070%20Diamonds%20-%20Rs.%20210%20Mobile%20Legends" target="_blank" rel="noopener noreferrer">
+          <span>💎</span> 70 Diamonds <strong>Rs. 210</strong>
+        </a>
+        <a class="rate-card" href="https://wa.me/9779708065981?text=Hello%2C%20I%20want%20to%20buy%20102%20%2B%2010%20Diamonds%20-%20Rs.%20290%20Mobile%20Legends" target="_blank" rel="noopener noreferrer">
+          <span>💎</span> 102 + 10 Diamonds <strong>Rs. 290</strong>
+        </a>
+        <a class="rate-card" href="https://wa.me/9779708065981?text=Hello%2C%20I%20want%20to%20buy%20140%20Diamonds%20-%20Rs.%20385%20Mobile%20Legends" target="_blank" rel="noopener noreferrer">
+          <span>💎</span> 140 Diamonds <strong>Rs. 385</strong>
+        </a>
+        <a class="rate-card" href="https://wa.me/9779708065981?text=Hello%2C%20I%20want%20to%20buy%20203%20%2B%2020%20Diamonds%20-%20Rs.%20510%20Mobile%20Legends" target="_blank" rel="noopener noreferrer">
+          <span>💎</span> 203 + 20 Diamonds <strong>Rs. 510</strong>
+        </a>
+        <a class="rate-card" href="https://wa.me/9779708065981?text=Hello%2C%20I%20want%20to%20buy%20284%20Diamonds%20-%20Rs.%20775%20Mobile%20Legends" target="_blank" rel="noopener noreferrer">
+          <span>💎</span> 284 Diamonds <strong>Rs. 775</strong>
+        </a>
+        <a class="rate-card" href="https://wa.me/9779708065981?text=Hello%2C%20I%20want%20to%20buy%20303%20%2B%2033%20Diamonds%20-%20Rs.%20795%20Mobile%20Legends" target="_blank" rel="noopener noreferrer">
+          <span>💎</span> 303 + 33 Diamonds <strong>Rs. 795</strong>
+        </a>
+        <a class="rate-card" href="https://wa.me/9779708065981?text=Hello%2C%20I%20want%20to%20buy%20355%20Diamonds%20-%20Rs.%20985%20Mobile%20Legends" target="_blank" rel="noopener noreferrer">
+          <span>💎</span> 355 Diamonds <strong>Rs. 985</strong>
+        </a>
+        <a class="rate-card" href="https://wa.me/9779708065981?text=Hello%2C%20I%20want%20to%20buy%20429%20Diamonds%20-%20Rs.%201200%20Mobile%20Legends" target="_blank" rel="noopener noreferrer">
+          <span>💎</span> 429 Diamonds <strong>Rs. 1200</strong>
+        </a>
+        <a class="rate-card" href="https://wa.me/9779708065981?text=Hello%2C%20I%20want%20to%20buy%20504%20%2B%2066%20Diamonds%20-%20Rs.%201280%20Mobile%20Legends" target="_blank" rel="noopener noreferrer">
+          <span>💎</span> 504 + 66 Diamonds <strong>Rs. 1280</strong>
+        </a>
+        <a class="rate-card" href="https://wa.me/9779708065981?text=Hello%2C%20I%20want%20to%20buy%20716%20Diamonds%20-%20Rs.%202000%20Mobile%20Legends" target="_blank" rel="noopener noreferrer">
+          <span>💎</span> 716 Diamonds <strong>Rs. 2000</strong>
+        </a>
+        <a class="rate-card" href="https://wa.me/9779708065981?text=Hello%2C%20I%20want%20to%20buy%201007%20%2B%20156%20Diamonds%20-%20Rs.%202600%20Mobile%20Legends" target="_blank" rel="noopener noreferrer">
+          <span>💎</span> 1007 + 156 Diamonds <strong>Rs. 2600</strong>
+        </a>
+      </div>
+
+      <a class="order-btn" href="order.html">Place Order Now</a>
+      <a href="index.html" class="back">← Back to Home</a>
+    </div>
+
+  </div>
+
+</body>
+</html>

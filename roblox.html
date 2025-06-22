@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blox Fruits Membership</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pirata+One&family=Orbitron:wght@700&display=swap');
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        filter: drop-shadow(0 0 10px #ffb347cc);
+      }
+      50% {
+        filter: drop-shadow(0 0 25px #ffd966cc);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Bounce + Glow animation */
+    @keyframes bounceGlow {
+      0%, 100% { 
+        transform: translateY(0);
+        text-shadow: 0 0 5px #ffb347cc;
+        color: #ffb347;
+      }
+      50% { 
+        transform: translateY(-12px);
+        text-shadow: 0 0 15px #ffd966cc, 0 0 25px #ffec75cc;
+        color: #fff4a3;
+      }
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem 1rem;
+      font-family: 'Orbitron', 'Pirata One', cursive, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0a132a, #0f2540, #0d1833, #080c24);
+      color: #a6c8ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      user-select: none;
+      overflow-x: hidden;
+      animation: fadeIn 1.3s ease-out both;
+    }
+
+    .container {
+      background: rgba(12, 18, 38, 0.95);
+      padding: 3rem 2.5rem;
+      border-radius: 25px;
+      box-shadow: 0 0 30px #1e3f66cc, inset 0 0 30px #003366aa;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      backdrop-filter: blur(8px);
+      border: 2px solid #28527a;
+    }
+
+    /* The ROBLOX box container */
+    .roblox-box {
+      background: linear-gradient(135deg, #ffb347, #ff8c00);
+      border-radius: 20px;
+      padding: 15px 30px;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 0 25px #ffae00, inset 0 0 40px #ffda75;
+      display: inline-flex;
+      justify-content: center;
+      user-select: none;
+    }
+
+    .animated-header {
+      font-family: 'Pirata One', cursive;
+      font-size: 2.8rem;
+      color: #3a1e00;
+      letter-spacing: 3px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .animated-header span {
+      display: inline-block;
+      animation: bounceGlow 1.5s infinite;
+      cursor: default;
+    }
+
+    /* Delay each letter's animation for sequential effect */
+    .animated-header span:nth-child(1) { animation-delay: 0s; }
+    .animated-header span:nth-child(2) { animation-delay: 0.15s; }
+    .animated-header span:nth-child(3) { animation-delay: 0.3s; }
+    .animated-header span:nth-child(4) { animation-delay: 0.45s; }
+    .animated-header span:nth-child(5) { animation-delay: 0.6s; }
+    .animated-header span:nth-child(6) { animation-delay: 0.75s; }
+
+    /* Bounce + Glow animation keyframes */
+    @keyframes bounceGlow {
+      0%, 100% { 
+        transform: translateY(0);
+        text-shadow: 0 0 5px #ffb347cc;
+        color: #3a1e00;
+      }
+      50% { 
+        transform: translateY(-12px);
+        text-shadow: 0 0 20px #ffec75cc, 0 0 30px #ffec75cc;
+        color: #fff4a3;
+      }
+    }
+
+    .logo-wrapper {
+      margin-bottom: 2rem;
+    }
+
+    .bloxfruits-logo {
+      width: 130px;
+      height: 50px;
+      margin: 0 auto;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/1/11/Roblox_Logo_2022.svg') no-repeat center/contain;
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    h1 {
+      font-family: 'Pirata One', cursive;
+      font-size: 2.8rem;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      color: #ffb347;
+      text-shadow: 0 0 10px #ffb347cc, 0 0 30px #ff9d00cc;
+      letter-spacing: 4px;
+    }
+
+    p.description {
+      font-size: 1.1rem;
+      color: #c9d6ffcc;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+      user-select: text;
+      text-shadow: 0 0 6px #1e3f66cc;
+    }
+
+    .section-title {
+      font-family: 'Pirata One', cursive;
+      font-size: 1.9rem;
+      margin: 2rem 0 1rem 0;
+      color: #ffb347;
+      text-shadow: 0 0 12px #ffb347cc, 0 0 30px #ff9d00cc;
+      letter-spacing: 2px;
+      border-bottom: 2px solid #ffb347;
+      padding-bottom: 6px;
+    }
+
+    .subscription-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .subscription-item {
+      background: #0c1e3a;
+      border-radius: 18px;
+      padding: 1.4rem 1.8rem;
+      font-size: 1.2rem;
+      box-shadow: inset 0 0 15px #145a96aa;
+      color: #a6c8ff;
+      border: 1.8px solid #145a96cc;
+      text-decoration: none;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .subscription-item:hover {
+      background: #145a96;
+      color: #fff;
+      box-shadow: 0 0 20px #ffd966, inset 0 0 30px #ffd966aa;
+      transform: scale(1.05);
+      border-color: #ffd966;
+    }
+
+    .premium-list .subscription-item {
+      background: linear-gradient(135deg, #ffb347, #ff8c00);
+      border: none;
+      box-shadow: 0 0 25px #ffae00, inset 0 0 40px #ffda75;
+      color: #3a1e00;
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: 1.8px;
+      font-family: 'Pirata One', cursive;
+    }
+
+    .premium-list .subscription-item:hover {
+      background: linear-gradient(135deg, #ff8c00, #ffb347);
+      box-shadow: 0 0 35px #ffda75, inset 0 0 50px #ffe98b;
+      color: #4d2e00;
+      transform: scale(1.12);
+      text-shadow: 0 0 10px #5a3700;
+    }
+
+    .back-home {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: 2px solid #ffb347;
+      border-radius: 10px;
+      padding: 10px 20px;
+      color: #ffb347;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      box-shadow: 0 0 10px #ffb347aa, 0 0 20px #ffb347aa;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      z-index: 1000;
+      user-select: none;
+    }
+
+    .back-home:hover {
+      background-color: #ffb347;
+      color: #4d2e00;
+      box-shadow: 0 0 25px #ffda75, 0 0 40px #ffda75;
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        padding: 2rem 1.5rem;
+        max-width: 95vw;
+      }
+      .subscription-item {
+        font-size: 1.05rem;
+        padding: 1rem 1.5rem;
+      }
+      .premium-list .subscription-item {
+        font-size: 1.15rem;
+      }
+      .section-title {
+        font-size: 1.4rem;
+      }
+      .roblox-box {
+        padding: 12px 20px;
+      }
+      .animated-header {
+        font-size: 2rem;
+        gap: 6px;
+      }
+      .back-home {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+        top: 15px;
+        right: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-home" aria-label="Back to Home">Home</a>
+
+  <div class="container" role="main">
+
+    <!-- Roblox box above the main header -->
+    <div class="roblox-box" aria-label="ROBLOX animated header">
+      <div class="animated-header">
+        <span>R</span><span>O</span><span>B</span><span>L</span><span>O</span><span>X</span>
+      </div>
+    </div>
+
+    <div class="logo-wrapper">
+      <div class="bloxfruits-logo" aria-label="Blox Fruits logo"></div>
+    </div>
+
+    <h1>Blox Fruits Membership</h1>
+    <p class="description">
+      Choose your Blox Fruits package and order directly via WhatsApp.
+    </p>
+
+    <!-- Robux Packages -->
+    <div>
+      <div class="section-title">Robux Packages</div>
+      <div class="subscription-list">
+        <a href="#" class="subscription-item">80 Roblox <strong>Rs. 100</strong></a>
+        <a href="#" class="subscription-item">160 Roblox <strong>Rs. 200</strong></a>
+        <a href="#" class="subscription-item">500 Roblox <strong>Rs. 780</strong></a>
+        <a href="#" class="subscription-item">1000 Roblox <strong>Rs. 1500</strong></a>
+        <a href="#" class="subscription-item">2000 Roblox <strong>Rs. 2900</strong></a>
+        <a href="#" class="subscription-item">5250 Roblox <strong>Rs. 6845</strong></a>
+      </div>
+    </div>
+
+    <!-- Premium Section -->
+    <div class="premium-list">
+      <div class="section-title">Premium Membership</div>
+      <div class="subscription-list">
+        <a href="#" class="subscription-item">1000 Premium <strong>Rs. 1500</strong></a>
+        <a href="#" class="subscription-item">2200 Premium <strong>Rs. 2900</strong></a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

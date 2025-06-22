@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CapCut Premium</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem 1rem;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #ffffff;
+
+      background: linear-gradient(-45deg, #0f0f0f, #1b003c, #00293c, #000);
+      background-size: 400% 400%;
+      animation: waveBG 12s ease infinite;
+      position: relative;
+    }
+
+    @keyframes waveBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.85);
+      padding: 3rem 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Skeleton Styles */
+    .skeleton-wrapper {
+      width: 100%;
+      max-width: 480px;
+      padding: 3rem 2rem;
+      border-radius: 20px;
+      background: rgba(0,0,0,0.85);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .skeleton {
+      background: linear-gradient(90deg, #222222 25%, #444444 50%, #222222 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite ease-in-out;
+      border-radius: 8px;
+      margin: 1rem auto;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    /* Skeleton shapes */
+    .skeleton.logo {
+      width: 180px;
+      height: 40px;
+      margin-bottom: 2rem;
+      border-radius: 12px;
+      display: inline-block;
+    }
+
+    .skeleton.subtext {
+      width: 140px;
+      height: 14px;
+      margin: 0 auto 2rem;
+      border-radius: 6px;
+    }
+
+    .skeleton.title {
+      width: 120px;
+      height: 28px;
+      margin-bottom: 1.5rem;
+      border-radius: 10px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .skeleton.desc {
+      width: 90%;
+      height: 18px;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .skeleton.subscription {
+      width: 100%;
+      height: 50px;
+      border-radius: 15px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 12px #00f2ea40 inset;
+    }
+
+    /* Hide real content initially */
+    .hidden {
+      display: none;
+    }
+
+    /* Real content styles */
+
+    .main-logo {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #00f2ea;
+      letter-spacing: 2px;
+      text-shadow: 0 0 12px #00f2ea, 0 0 25px #00f2ea;
+    }
+
+    .main-logo .x {
+      color: #ffffff;
+      margin: 0 0.3rem;
+      text-shadow: 0 0 12px #ffffffaa;
+    }
+
+    .subtext {
+      font-size: 0.9rem;
+      color: #cccccc;
+      opacity: 0.7;
+      margin-top: 0.3rem;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #00f2ea;
+      margin-bottom: 1rem;
+    }
+
+    p.description {
+      font-size: 1.05rem;
+      color: #cccccc;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    .subscription-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .subscription-item {
+      background: #111;
+      padding: 1.3rem 1.5rem;
+      border-radius: 15px;
+      text-decoration: none;
+      color: #00f2ea;
+      font-size: 1.15rem;
+      box-shadow: 0 0 12px #00f2ea40;
+      border: 1px solid #00f2ea80;
+      transition: transform 0.3s ease, background 0.3s ease;
+      position: relative; /* For tooltip positioning */
+      cursor: pointer;
+    }
+
+    .subscription-item:hover {
+      background: #00f2ea;
+      color: #000;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00f2ea;
+    }
+
+    /* Tooltip styling */
+    .subscription-item .tooltip {
+      position: absolute;
+      bottom: 120%; /* above the subscription item */
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #00f2ea;
+      color: #000;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      box-shadow: 0 0 8px #00f2eaaa;
+      z-index: 10;
+    }
+
+    /* Tooltip arrow */
+    .subscription-item .tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 6px;
+      border-style: solid;
+      border-color: #00f2ea transparent transparent transparent;
+    }
+
+    /* Show tooltip on hover */
+    .subscription-item:hover .tooltip {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Neon Home Button */
+    .back-home {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: 2px solid #00f2ea;
+      border-radius: 10px;
+      padding: 10px 20px;
+      color: #00f2ea;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      box-shadow:
+        0 0 10px #00f2eaaa,
+        0 0 20px #00f2eaaa;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      z-index: 1000;
+      user-select: none;
+    }
+
+    .back-home:hover {
+      background-color: #00f2ea;
+      color: #000;
+      box-shadow:
+        0 0 20px #00f2ea,
+        0 0 30px #00f2ea;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 2rem 1.5rem;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .subscription-item {
+        font-size: 1rem;
+      }
+
+      .back-home {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+        top: 15px;
+        right: 15px;
+      }
+
+      /* Adjust tooltip on small screens if needed */
+      .subscription-item .tooltip {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Skeleton Loader -->
+  <div id="skeleton" class="skeleton-wrapper">
+    <div class="skeleton logo"></div>
+    <div class="skeleton subtext"></div>
+    <div class="skeleton title"></div>
+    <div class="skeleton desc"></div>
+    <div class="skeleton subscription"></div>
+    <div class="skeleton subscription"></div>
+  </div>
+
+  <!-- Real Content (hidden initially) -->
+  <a href="index.html" class="back-home hidden" aria-label="Back to Home">Home</a>
+
+  <div class="container hidden">
+    <div class="logo-wrapper">
+      <div class="main-logo">CapCut<span class="x">×</span>Glory</div>
+      <div class="subtext">Premium Editing, Ultimate Experience</div>
+    </div>
+
+    <h1>🎬 CapCut Premium</h1>
+    <p class="description">
+      Unlock premium tools, no watermarks, and special effects. Choose your plan and order directly on WhatsApp.
+    </p>
+
+    <div class="subscription-list">
+      <a href="https://wa.me/9779708065981?text=Hello%2C%20I%20want%20CapCut%20Premium%20-%201%20Screen%20Subscription" class="subscription-item" target="_blank" rel="noopener noreferrer">
+        1 Month – 1 Screen
+        <span class="tooltip">Price may differ, confirm on WhatsApp</span>
+      </a>
+      <a href="https://wa.me/9779708065981?text=Hello%2C%20I%20want%20CapCut%20Premium%20-%205%20Screens%20Subscription" class="subscription-item" target="_blank" rel="noopener noreferrer">
+        1 Month – 5 Screens
+        <span class="tooltip">Price may differ, confirm on WhatsApp</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // Show skeleton initially and hide content
+    // After 1 second, hide skeleton and show real content
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('skeleton').style.display = 'none';
+        document.querySelector('.container').classList.remove('hidden');
+        document.querySelector('.back-home').classList.remove('hidden');
+      }, 1000);
+    });
+  </script>
+
+</body>
+</html>

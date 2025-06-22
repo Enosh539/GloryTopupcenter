@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Place Your Order | Glory Top-Up Center</title>
+  <style>
+    /* same styling as before */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", sans-serif;
+    }
+    body {
+      background: #f4f4f4; color: #333; padding: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .card {
+      background: white;
+      padding: 2rem 3rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 450px;
+      width: 100%;
+    }
+    h1 {
+      color: #4b0082;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    form input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    button {
+      background: #4b0082;
+      color: white;
+      border: none;
+      padding: 12px 0;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background: #360064;
+    }
+    a.back-link {
+      display: block;
+      margin-top: 1.5rem;
+      text-align: center;
+      color: #4b0082;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+    a.back-link:hover {
+      color: #7e39ff;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Place Your Order</h1>
+    <form id="orderForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <select id="game" required>
+        <option value="" disabled selected>Select Game</option>
+        <option value="Free Fire">Free Fire</option>
+        <option value="PUBG Mobile">PUBG Mobile</option>
+        <option value="Mobile Legends">Mobile Legends</option>
+        <option value="COD Mobile">COD Mobile</option>
+        <option value="Roblox">Roblox</option>
+      </select>
+      <input type="text" id="userId" placeholder="Game User ID / UID" required />
+      <input type="text" id="amount" placeholder="Amount to Top-Up (e.g., 115 Diamonds)" required />
+      <button type="submit">Submit Order</button>
+    </form>
+    <a class="back-link" href="index.html">← Back to Home</a>
+  </div>
+
+  <script>
+    const form = document.getElementById('orderForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = encodeURIComponent(document.getElementById('name').value.trim());
+      const game = encodeURIComponent(document.getElementById('game').value);
+      const userId = encodeURIComponent(document.getElementById('userId').value.trim());
+      const amount = encodeURIComponent(document.getElementById('amount').value.trim());
+
+      // Your WhatsApp number with country code, no plus or spaces (e.g. Nepal: 9779708065981)
+      const whatsappNumber = '9779708065981';
+
+      // Construct the message text
+      const message = `Hello, I would like to place an order:\nName: ${name}\nGame: ${game}\nUser ID: ${userId}\nAmount: ${amount}`;
+
+      // WhatsApp URL (web or app)
+      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+      // Open WhatsApp link in a new tab
+      window.open(whatsappURL, '_blank');
+    });
+  </script>
+</body>
+</html>

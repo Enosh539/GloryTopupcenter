@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glory Top-Up Center</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(180deg, #0d0d0d, #1a1a2e);
+      color: #0ff;
+      overflow-x: hidden;
+      padding-bottom: 100px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #111122, #220044);
+      text-align: center;
+      padding: 2rem 1rem;
+      box-shadow: 0 0 15px #0ff;
+      border-bottom: 2px solid #0ff;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff;
+      animation: pulseGlow 2s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+        transform: scale(1);
+      }
+      50% {
+        text-shadow: 0 0 20px #0ff, 0 0 40px #0ff;
+        transform: scale(1.05);
+      }
+      100% {
+        text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+        transform: scale(1);
+      }
+    }
+
+    header p {
+      font-size: 0.9rem;
+      color: #aaaaff;
+      margin-top: 0.5rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 1rem;
+      background: #111;
+    }
+
+    nav a {
+      color: #0ff;
+      text-decoration: none;
+      border: 1px solid #0ff;
+      padding: 0.6rem 1rem;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      background: #0ff;
+      color: #000;
+    }
+
+    section {
+      padding: 2rem 1rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    section h2 {
+      text-align: center;
+      color: #ff0;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .services, .other-services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .services li, .other-services li {
+      list-style: none;
+      background: #111;
+      padding: 1.2rem;
+      border: 1px solid #0ff;
+      border-radius: 10px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .services li:hover, .other-services li:hover {
+      background: #0ff;
+      color: #000;
+    }
+
+    .services li a, .other-services li a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      margin-top: 0.5rem;
+    }
+
+    .contact-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .contact-buttons a {
+      padding: 1rem 1.5rem;
+      border-radius: 30px;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .whatsapp { background: #25D366; }
+    .facebook { background: #1877f2; }
+    .email { background: #8a2be2; }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.75rem;
+      color: #ccc;
+      background: #111;
+      margin-top: 3rem;
+    }
+
+    /* Announcement Popup */
+    .announcement-popup {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0ff;
+      color: #000;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #0ff;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .announcement-popup a {
+      color: #000;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    .announcement-popup button {
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #000;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -20px); }
+      to { opacity: 1; transform: translateX(-50%); }
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.4rem;
+      }
+      header p {
+        font-size: 0.7rem;
+      }
+      .announcement-popup {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Popup -->
+  <div class="announcement-popup" id="popup">
+    📢 New Updates on our WhatsApp Channel! 
+    <a href="https://whatsapp.com/channel/0029Vb64EDk0QeahklWkiZ2e" target="_blank">Join Now</a>
+    <button onclick="document.getElementById('popup').style.display='none'">×</button>
+  </div>
+
+  <header>
+    <h1>Glory Top-Up Center</h1>
+    <p>Fast • Trusted • Affordable</p>
+  </header>
+
+  <nav>
+    <a href="#services">Top-Up</a>
+    <a href="#other-services">More</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="services">
+    <h2>Top-Up Services</h2>
+    <ul class="services">
+      <li>🔥 <a href="freefire.html">Free Fire Diamonds</a></li>
+      <li>🎯 <a href="pubg.html">PUBG UC</a></li>
+      <li>⚔ <a href="mobilelegends.html">Mobile Legends Diamonds</a></li>
+      <li>🔫 <a href="cod.html">Call of Duty CP</a></li>
+      <li>🕹️ <a href="roblox.html">Roblox Robux</a></li>
+    </ul>
+  </section>
+
+  <section id="other-services">
+    <h2>Other Services</h2>
+    <ul class="other-services">
+      <li>🎬 <a href="capcut.html">CapCut Premium</a></li>
+      <li>📺 <a href="netflix.html">Netflix Premium</a></li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-buttons">
+      <a href="https://wa.me/9779708065981" class="whatsapp" target="_blank">📞 WhatsApp</a>
+      <a href="https://www.facebook.com/share/19g4Hj8pRh/" class="facebook" target="_blank">📘 Facebook</a>
+      <a href="mailto:glorytopupcenter@gmail.com" class="email">📧 Email</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Glory Top-Up Center. All rights reserved.
+  </footer>
+
+</body>
+</html>
