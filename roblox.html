@@ -21,16 +21,15 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Bounce + Glow animation */
     @keyframes bounceGlow {
       0%, 100% { 
         transform: translateY(0);
         text-shadow: 0 0 5px #ffb347cc;
-        color: #ffb347;
+        color: #3a1e00;
       }
       50% { 
         transform: translateY(-12px);
-        text-shadow: 0 0 15px #ffd966cc, 0 0 25px #ffec75cc;
+        text-shadow: 0 0 20px #ffec75cc, 0 0 30px #ffec75cc;
         color: #fff4a3;
       }
     }
@@ -62,7 +61,6 @@
       border: 2px solid #28527a;
     }
 
-    /* The ROBLOX box container */
     .roblox-box {
       background: linear-gradient(135deg, #ffb347, #ff8c00);
       border-radius: 20px;
@@ -89,27 +87,12 @@
       cursor: default;
     }
 
-    /* Delay each letter's animation for sequential effect */
     .animated-header span:nth-child(1) { animation-delay: 0s; }
     .animated-header span:nth-child(2) { animation-delay: 0.15s; }
     .animated-header span:nth-child(3) { animation-delay: 0.3s; }
     .animated-header span:nth-child(4) { animation-delay: 0.45s; }
     .animated-header span:nth-child(5) { animation-delay: 0.6s; }
     .animated-header span:nth-child(6) { animation-delay: 0.75s; }
-
-    /* Bounce + Glow animation keyframes */
-    @keyframes bounceGlow {
-      0%, 100% { 
-        transform: translateY(0);
-        text-shadow: 0 0 5px #ffb347cc;
-        color: #3a1e00;
-      }
-      50% { 
-        transform: translateY(-12px);
-        text-shadow: 0 0 20px #ffec75cc, 0 0 30px #ffec75cc;
-        color: #fff4a3;
-      }
-    }
 
     .logo-wrapper {
       margin-bottom: 2rem;
@@ -263,8 +246,6 @@
   <a href="index.html" class="back-home" aria-label="Back to Home">Home</a>
 
   <div class="container" role="main">
-
-    <!-- Roblox box above the main header -->
     <div class="roblox-box" aria-label="ROBLOX animated header">
       <div class="animated-header">
         <span>R</span><span>O</span><span>B</span><span>L</span><span>O</span><span>X</span>
@@ -284,8 +265,8 @@
     <div>
       <div class="section-title">Robux Packages</div>
       <div class="subscription-list">
-        <a href="#" class="subscription-item">80 Roblox <strong>Rs. 100</strong></a>
-        <a href="#" class="subscription-item">160 Roblox <strong>Rs. 200</strong></a>
+        <a href="#" class="subscription-item">80 Roblox <strong>Rs. 180</strong></a>
+        <a href="#" class="subscription-item">160 Roblox <strong>Rs. 360</strong></a>
         <a href="#" class="subscription-item">500 Roblox <strong>Rs. 780</strong></a>
         <a href="#" class="subscription-item">1000 Roblox <strong>Rs. 1500</strong></a>
         <a href="#" class="subscription-item">2000 Roblox <strong>Rs. 2900</strong></a>
