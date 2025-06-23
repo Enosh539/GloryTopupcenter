@@ -386,42 +386,29 @@
     outline: none;
   }
 
-  /* Anime girl mobile bottom-left smaller */
-  #mobile-version .anime-container {
-    position: fixed;
-    bottom: 70px;
-    left: 10px;
-    z-index: 1000;
-    background: linear-gradient(135deg, #300030cc, #600060cc);
-    border-radius: 20px;
-    padding: 5px;
-    box-shadow: 0 0 25px #ff33ff;
-    backdrop-filter: blur(3px);
-  }
-  #mobile-version .anime-girl {
-    width: 110px;
-    border-radius: 15px;
-    display: block;
-  }
+  /* Anime girl inside container */
+#mobile-version .anime-girl {
+  width: 110px;
+  border-radius: 15px;
+  display: block;
+}
 
-  /* Greeting mobile next to anime */
-  #mobile-version .greeting {
-    position: fixed;
-    bottom: 140px;
-    left: 130px;
-    background: #ff33ffcc;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 1rem;
-    box-shadow: 0 0 10px #ff33ff;
-    max-width: 170px;
-    user-select: none;
-    cursor: pointer;
-    z-index: 999;
-  }
-
+/* Greeting mobile next to anime girl */
+#mobile-version .greeting {
+  background: #ff33ffcc;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 0 10px #ff33ff;
+  max-width: 170px;
+  user-select: none;
+  cursor: pointer;
+  /* Remove fixed position because it's inside anime-container now */
+  position: static;
+  z-index: auto;
+}
   /* Refresh logo top-left for mobile */
   #mobile-version .top-logo {
     position: fixed;
