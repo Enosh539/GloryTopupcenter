@@ -1,278 +1,939 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Glory Top-Up Center</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Glory Top-Up Center</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+  /* ======== COMMON STYLES ======== */
+  body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #0ff;
+    overflow-x: hidden;
+  }
+  a {
+    color: #0ff;
+    text-decoration: none;
+  }
+  a:hover, a:focus {
+    text-decoration: underline;
+    outline: none;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:focus, a:focus {
+    outline: 2px solid #ff33ff;
+    outline-offset: 2px;
+  }
+
+  /* ======== DESKTOP ======== */
+  #desktop-version {
+    display: block;
+  }
+  #desktop-version header {
+    text-align: center;
+    padding: 2rem 1rem 1rem;
+    color: #00f0ff;
+    text-shadow: 0 0 20px #0ff;
+    font-size: 3rem;
+    animation: pulse 3s infinite;
+  }
+  #desktop-version .tagline {
+    text-align: center;
+    color: #ff77ff;
+    font-size: 1.4rem;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  /* Sticky nav with smooth scroll */
+  #desktop-version nav {
+    position: sticky;
+    top: 0;
+    background: #0f0c29dd;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px #000a;
+  }
+  #desktop-version nav a {
+    padding: 0.8rem 1.5rem;
+    background: transparent;
+    border: 2px solid #0ff;
+    border-radius: 30px;
+    color: #0ff;
+    transition: 0.3s;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  #desktop-version nav a:hover, #desktop-version nav a:focus {
+    background: #0ff;
+    color: #000;
+    outline: none;
+    box-shadow: 0 0 10px #0ff;
+  }
+
+  /* Section containers with partition */
+  .service-section {
+    background: #000000dd;
+    border-radius: 20px;
+    margin: 1rem auto 2rem;
+    max-width: 1024px;
+    padding: 1.5rem 2rem 2rem;
+    box-shadow: 0 0 30px #00ffff88;
+  }
+
+  /* Section titles */
+  .service-section h2 {
+    font-size: 2rem;
+    color: #ff00ff;
+    margin-bottom: 0.5rem;
+    border-bottom: 3px solid #ff00ff;
+    padding-bottom: 0.3rem;
+    user-select: none;
+  }
+
+  /* Services grid */
+  .services, 
+  .other-services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+  }
+  .services li,
+  .other-services li {
+    list-style: none;
+    background: #000000cc;
+    border: 2px solid #0ff;
+    border-radius: 15px;
+    padding: 1.2rem;
+    text-align: center;
+    box-shadow: 0 0 25px #00f0ff66;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+    user-select: none;
+  }
+  .services li:hover,
+  .other-services li:hover,
+  .services li:focus-within,
+  .other-services li:focus-within {
+    transform: scale(1.08);
+    background: #0ff3;
+    box-shadow: 0 0 40px #0ff;
+  }
+  .services img,
+  .other-services img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    margin-bottom: 0.7rem;
+  }
+  .services a,
+  .other-services a {
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: inline-block;
+  }
+
+  /* Confirmation animation */
+  .services li.clicked,
+  .other-services li.clicked {
+    animation: clickConfirm 1s ease forwards;
+  }
+  @keyframes clickConfirm {
+    0% { box-shadow: 0 0 40px #0ff; transform: scale(1.1); }
+    100% { box-shadow: 0 0 0 #0ff; transform: scale(1); }
+  }
+
+  /* Footer desktop */
+  #desktop-version footer {
+    background: #111;
+    padding: 2rem 1rem;
+    color: #ccc;
+    text-align: center;
+    font-size: 1rem;
+  }
+  #desktop-version .footer-info {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  #desktop-version .footer-info div {
+    font-weight: 600;
+  }
+  #desktop-version .refresh-btn {
+    background: #ff00ff;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    color: white;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 0 10px #ff00ff;
+    transition: background-color 0.3s;
+  }
+  #desktop-version .refresh-btn:hover,
+  #desktop-version .refresh-btn:focus {
+    background-color: #e000e0;
+    outline: none;
+  }
+#desktop-version .anime-container {
+  position: fixed;
+  bottom: 100px;
+  left: 15px;
+  z-index: 1000;
+  background: linear-gradient(135deg, #0f0c29cc, #302b63cc);
+  border-radius: 25px;
+  padding: 8px;
+  box-shadow: 0 0 30px #0ff;
+  backdrop-filter: blur(5px);
+}
+#desktop-version .anime-girl {
+  width: 180px;
+  border-radius: 20px;
+  display: block;
+}
+
+
+/* Greeting text next to anime girl */
+#desktop-version .greeting {
+  position: fixed;
+  bottom: 200px; /* was 190px */
+  left: 230px;   /* was 210px */
+  background: #ff00ffcc;
+  color: white;
+  padding: 0.8rem 1.3rem;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 0 15px #ff00ff;
+  max-width: 250px;
+  z-index: 999;
+  user-select: none;
+  cursor: pointer;
+}
+
+
+  /* Refresh logo top-left */
+  #desktop-version .top-logo {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    width: 70px;
+    cursor: pointer;
+    filter: drop-shadow(0 0 15px #0ff);
+    z-index: 1100;
+    transition: transform 0.3s;
+  }
+  #desktop-version .top-logo:hover,
+  #desktop-version .top-logo:focus {
+    transform: scale(1.1);
+    outline: none;
+  }
+
+  /* ======== MOBILE ======== */
+  #mobile-version {
+    display: none;
+  }
+  #mobile-version header {
+    text-align: center;
+    padding: 1.5rem 1rem 1rem;
+    color: #ff77ff;
+    font-size: 2.2rem;
+    text-shadow: 0 0 10px #ff77ffaa;
+    user-select: none;
+  }
+  #mobile-version .tagline {
+    text-align: center;
+    color: #ff66ff;
+    font-size: 1.1rem;
+    margin: 0 0 1.2rem 0;
+  }
+  #mobile-version nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0 1rem 1.5rem;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    background: #300030dd;
+    z-index: 1000;
+    box-shadow: 0 2px 8px #220022aa;
+  }
+  #mobile-version nav a {
+    padding: 0.6rem 1rem;
+    border: 2px solid #ff66ff;
+    border-radius: 25px;
+    color: #ff66ff;
+    font-weight: 600;
+    font-size: 1rem;
+    background: transparent;
+    transition: 0.3s;
+  }
+  #mobile-version nav a:hover,
+  #mobile-version nav a:focus {
+    background: #ff66ff;
+    color: #1a001a;
+    outline: none;
+  }
+
+  /* Section containers with partition mobile */
+  #mobile-version .service-section {
+    background: #330033dd;
+    border-radius: 20px;
+    margin: 1rem auto 2rem;
+    max-width: 95vw;
+    padding: 1rem 1.5rem 1.5rem;
+    box-shadow: 0 0 20px #ff33ff88;
+  }
+  #mobile-version .service-section h2 {
+    font-size: 1.6rem;
+    color: #ff33ff;
+    margin-bottom: 0.5rem;
+    border-bottom: 3px solid #ff33ff;
+    padding-bottom: 0.25rem;
+    user-select: none;
+  }
+
+  /* Services list vertical */
+  #mobile-version .services,
+  #mobile-version .other-services {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  #mobile-version .services li,
+  #mobile-version .other-services li {
+    list-style: none;
+    background: #1a001acc;
+    border: 2px solid #ff66ff;
+    border-radius: 15px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 0 20px #ff66ff88;
+    transition: background-color 0.3s, transform 0.3s;
+    user-select: none;
+  }
+  #mobile-version .services li:hover,
+  #mobile-version .other-services li:hover,
+  #mobile-version .services li:focus-within,
+  #mobile-version .other-services li:focus-within {
+    background: #ff66ffaa;
+    transform: scale(1.04);
+    outline: none;
+  }
+  #mobile-version .services img,
+  #mobile-version .other-services img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 0.6rem;
+    object-fit: contain;
+  }
+  #mobile-version .services a,
+  #mobile-version .other-services a {
+    font-weight: 700;
+    font-size: 1rem;
+    display: inline-block;
+  }
+
+  /* Confirmation animation */
+  #mobile-version .services li.clicked,
+  #mobile-version .other-services li.clicked {
+    animation: clickConfirm 1s ease forwards;
+  }
+
+  /* Footer mobile */
+  #mobile-version footer {
+    background: #220022;
+    padding: 1.5rem 1rem;
+    color: #eee;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  #mobile-version .footer-info {
+    margin-bottom: 1rem;
+  }
+  #mobile-version .footer-info div {
+    margin: 0.3rem 0;
+  }
+  #mobile-version .refresh-btn {
+    background: #ff33ff;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    color: white;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: 0 0 10px #ff33ffcc;
+    transition: background-color 0.3s;
+  }
+  #mobile-version .refresh-btn:hover,
+  #mobile-version .refresh-btn:focus {
+    background-color: #e600e6;
+    outline: none;
+  }
+
+  /* Anime girl mobile bottom-left smaller */
+  #mobile-version .anime-container {
+    position: fixed;
+    bottom: 70px;
+    left: 10px;
+    z-index: 1000;
+    background: linear-gradient(135deg, #300030cc, #600060cc);
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 0 0 25px #ff33ff;
+    backdrop-filter: blur(3px);
+  }
+  #mobile-version .anime-girl {
+    width: 110px;
+    border-radius: 15px;
+    display: block;
+  }
+
+  /* Greeting mobile next to anime */
+  #mobile-version .greeting {
+    position: fixed;
+    bottom: 140px;
+    left: 130px;
+    background: #ff33ffcc;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: 0 0 10px #ff33ff;
+    max-width: 170px;
+    user-select: none;
+    cursor: pointer;
+    z-index: 999;
+  }
+
+  /* Refresh logo top-left for mobile */
+  #mobile-version .top-logo {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    cursor: pointer;
+    filter: drop-shadow(0 0 12px #ff66ff);
+    z-index: 1100;
+    transition: transform 0.3s;
+  }
+  #mobile-version .top-logo:hover,
+  #mobile-version .top-logo:focus {
+    transform: scale(1.1);
+    outline: none;
+  }
+
+  /* Floating WhatsApp chat button */
+  #whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25d366;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #25d366bb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1200;
+    transition: background-color 0.3s;
+  }
+  #whatsapp-btn:hover,
+  #whatsapp-btn:focus {
+    background: #1ebe57;
+    outline: none;
+  }
+  #whatsapp-btn svg {
+    width: 32px;
+    height: 32px;
+    fill: white;
+  }
+
+  /* Contact popup overlay */
+  #contact-popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 1500;
+    align-items: center;
+    justify-content: center;
+  }
+  #contact-popup {
+    background: #222;
+    border-radius: 15px;
+    padding: 1.5rem 2rem;
+    width: 320px;
+    max-width: 90vw;
+    color: #0ff;
+    box-shadow: 0 0 20px #0ff;
+  }
+  #contact-popup h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  #contact-popup label {
+    display: block;
+    margin: 0.7rem 0 0.3rem;
+  }
+  #contact-popup input,
+  #contact-popup textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+  }
+  #contact-popup textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  #contact-popup button {
+    margin-top: 1rem;
+    background: #0ff;
+    color: #000;
+    border: none;
+    padding: 0.7rem;
+    width: 100%;
+    font-weight: 700;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+  #contact-popup button:hover,
+  #contact-popup button:focus {
+    background: #00c4c4;
+    outline: none;
+  }
+  #contact-popup-close {
+    float: right;
+    cursor: pointer;
+    color: #ff33ff;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  #contact-popup-close:hover,
+  #contact-popup-close:focus {
+    color: #ff00ff;
+    outline: none;
+  }
+
+  /* Swipe gesture highlight for greeting on mobile */
+  @media (max-width: 600px) {
+    #mobile-version .greeting:active {
+      filter: brightness(1.2);
     }
+  }
 
-    body {
-      font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(180deg, #0d0d0d, #1a1a2e);
-      color: #0ff;
-      overflow-x: hidden;
-      padding-bottom: 100px;
-    }
-
-    header {
-      background: linear-gradient(135deg, #111122, #220044);
-      text-align: center;
-      padding: 2rem 1rem;
-      box-shadow: 0 0 15px #0ff;
-      border-bottom: 2px solid #0ff;
-    }
-
-    header h1 {
-      font-size: 2rem;
-      color: #0ff;
-      text-shadow: 0 0 10px #0ff;
-      animation: pulseGlow 2s infinite;
-    }
-
-    @keyframes pulseGlow {
-      0% {
-        text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
-        transform: scale(1);
-      }
-      50% {
-        text-shadow: 0 0 20px #0ff, 0 0 40px #0ff;
-        transform: scale(1.05);
-      }
-      100% {
-        text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
-        transform: scale(1);
-      }
-    }
-
-    header p {
-      font-size: 0.9rem;
-      color: #aaaaff;
-      margin-top: 0.5rem;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      padding: 1rem;
-      background: #111;
-    }
-
-    nav a {
-      color: #0ff;
-      text-decoration: none;
-      border: 1px solid #0ff;
-      padding: 0.6rem 1rem;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      background: #0ff;
-      color: #000;
-    }
-
-    section {
-      padding: 2rem 1rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    section h2 {
-      text-align: center;
-      color: #ff0;
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .services, .other-services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-
-    .services li, .other-services li {
-      list-style: none;
-      background: #111;
-      padding: 1.2rem;
-      border: 1px solid #0ff;
-      border-radius: 10px;
-      text-align: center;
-      transition: 0.3s;
-    }
-
-    .services li:hover, .other-services li:hover {
-      background: #0ff;
-      color: #000;
-    }
-
-    .services li a, .other-services li a {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      margin-top: 0.5rem;
-    }
-
-    .contact-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .contact-buttons a {
-      padding: 1rem 1.5rem;
-      border-radius: 30px;
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .whatsapp { background: #25D366; }
-    .facebook { background: #1877f2; }
-    .email { background: #8a2be2; }
-
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.75rem;
-      color: #ccc;
-      background: #111;
-      margin-top: 3rem;
-    }
-
-    /* Announcement Popup */
-    .announcement-popup {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #0ff;
-      color: #000;
-      padding: 1rem 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 0 15px #0ff;
-      z-index: 1000;
+  /* MEDIA QUERIES TO TOGGLE VERSIONS */
+  @media (max-width: 600px) {
+    #desktop-version {
       display: none;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
     }
-
-    .announcement-popup a {
-      color: #000;
-      font-weight: bold;
-      text-decoration: underline;
+    #mobile-version {
+      display: block;
     }
-
-    .announcement-popup button {
-      background: transparent;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-      color: #000;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.4rem;
-      }
-      header p {
-        font-size: 0.7rem;
-      }
-      .announcement-popup {
-        flex-direction: column;
-        text-align: center;
-        padding: 1rem;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <!-- Announcement Popup -->
-  <div class="announcement-popup" id="popup" role="alert" aria-live="polite">
-    📢 New Updates on our WhatsApp Channel! 
-    <a href="https://whatsapp.com/channel/0029Vb64EDk0QeahklWkiZ2e" target="_blank" rel="noopener noreferrer">Join Now</a>
-    <button aria-label="Close announcement" id="popup-close-btn">×</button>
-  </div>
-
-  <header>
-    <h1>Glory Top-Up Center</h1>
-    <p>Fast • Trusted • Affordable</p>
-  </header>
-
+<!-- DESKTOP VERSION -->
+<div id="desktop-version" role="main" aria-label="Desktop version">
+  <img src="D:\Glory Top up center/glory.jpg" alt="Glory Top-Up Center Logo" class="top-logo" tabindex="0" onclick="location.reload()" aria-label="Refresh page" 
+  style="width:120px; height:120px; border-radius:50%; object-fit:cover; cursor:pointer; display:block; margin:1rem auto;" />
+  <header>Glory Top-Up Center</header>
+  <p class="tagline">FAST • TRUSTED • AFFORDABLE</p>
   <nav>
-    <a href="#services">Top-Up</a>
-    <a href="#other-services">More</a>
-    <a href="#contact">Contact</a>
+    <a href="#top-up-services" tabindex="0">Top-Up Services</a>
+    <a href="#other-services" tabindex="0">Other Services</a>
+    <a href="#contact" tabindex="0">Contact</a>
   </nav>
 
-  <section id="services">
-    <h2>Top-Up Services</h2>
-    <ul class="services">
-      <li>🔥 <a href="freefire.html">Free Fire Diamonds</a></li>
-      <li>🎯 <a href="pubg.html">PUBG UC</a></li>
-      <li>⚔ <a href="mobilelegends.html">Mobile Legends Diamonds</a></li>
-      <li>🔫 <a href="cod.html">Call of Duty CP</a></li>
-      <li>🕹️ <a href="roblox.html">Roblox Robux</a></li>
-    </ul>
-  </section>
+  <div class="greeting" tabindex="0" aria-live="polite" aria-atomic="true" role="status" title="Click to see another greeting">Good to see you!</div>
 
-  <section id="other-services">
-    <h2>Other Services</h2>
-    <ul class="other-services">
-      <li>🎬 <a href="capcut.html">CapCut Premium</a></li>
-      <li>📺 <a href="netflix.html">Netflix Premium</a></li>
-    </ul>
-  </section>
+  <div class="anime-container" aria-label="Animated anime girl greeting">
+    <video class="anime-girl" autoplay muted loop playsinline preload="metadata" loading="lazy" aria-hidden="true" tabindex="-1">
+      <source src="D:\Glory Top up center/0623.mp4" type="video/webm" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <div class="contact-buttons">
-      <a href="https://wa.me/9779708065981" class="whatsapp" target="_blank" rel="noopener noreferrer">📞 WhatsApp</a>
-      <a href="https://www.facebook.com/share/19g4Hj8pRh/" class="facebook" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
-      <a href="mailto:glorytopupcenter@gmail.com" class="email">📧 Email</a>
-    </div>
-  </section>
+<!-- TOP-UP SERVICES SECTION -->
+<section id="top-up-services" class="service-section" aria-label="Top-Up services for games">
+  <h2>Top-Up Services</h2>
+  <ul class="services" style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; padding:0;">
+    <li tabindex="0" role="link" aria-label="Free Fire Diamonds" data-service="Free Fire Diamonds" style="list-style:none; width:140px; text-align:center;">
+      <a href="freefire.html" tabindex="-1" style="display:flex; flex-direction:column; align-items:center; text-decoration:none; color:white;">
+        <img src="D:\Glory Top up center/freefire.jpg" alt="Free Fire Diamonds" loading="lazy" style="width:80px; height:auto; border-radius:8px; margin-bottom:0.5rem;" />
+        <span>Free Fire Diamonds</span>
+      </a>
+    </li>
+    <li tabindex="0" role="link" aria-label="PUBG UC" data-service="PUBG UC" style="list-style:none; width:140px; text-align:center;">
+      <a href="pubg.html" tabindex="-1" style="display:flex; flex-direction:column; align-items:center; text-decoration:none; color:white;">
+        <img src="D:\Glory Top up center/pubg.jpg" alt="PUBG UC" loading="lazy" style="width:80px; height:auto; border-radius:8px; margin-bottom:0.5rem;" />
+        <span>PUBG UC</span>
+      </a>
+    </li>
+    <li tabindex="0" role="link" aria-label="Mobile Legends" data-service="Mobile Legends" style="list-style:none; width:140px; text-align:center;">
+      <a href="mobilelegends.html" tabindex="-1" style="display:flex; flex-direction:column; align-items:center; text-decoration:none; color:white;">
+        <img src="D:\Glory Top up center/mobilelegends.jpg" alt="Mobile Legends" loading="lazy" style="width:80px; height:auto; border-radius:8px; margin-bottom:0.5rem;" />
+        <span>Mobile Legends</span>
+      </a>
+    </li>
+    <li tabindex="0" role="link" aria-label="Call of Duty CP" data-service="Call of Duty CP" style="list-style:none; width:140px; text-align:center;">
+      <a href="cod.html" tabindex="-1" style="display:flex; flex-direction:column; align-items:center; text-decoration:none; color:white;">
+        <img src="D:\Glory Top up center/cod.jpg" alt="Call of Duty CP" loading="lazy" style="width:80px; height:auto; border-radius:8px; margin-bottom:0.5rem;" />
+        <span>Call of Duty CP</span>
+      </a>
+    </li>
+    <li tabindex="0" role="link" aria-label="Roblox Robux" data-service="Roblox Robux" style="list-style:none; width:140px; text-align:center;">
+      <a href="roblox.html" tabindex="-1" style="display:flex; flex-direction:column; align-items:center; text-decoration:none; color:white;">
+        <img src="D:\Glory Top up center/roblox.jpg" alt="Roblox Robux" loading="lazy" style="width:80px; height:auto; border-radius:8px; margin-bottom:0.5rem;" />
+        <span>Roblox Robux</span>
+      </a>
+    </li>
+  </ul>
+</section>
+
+<!-- OTHER SERVICES SECTION -->
+<section id="other-services" class="service-section" aria-label="Other services like CapCut and Netflix">
+  <h2>Other Services</h2>
+  <ul class="other-services" style="display:flex; gap:1rem; justify-content:center; padding:0;">
+    <li tabindex="0" role="link" aria-label="CapCut Premium" data-service="CapCut Premium" style="list-style:none; width:140px; text-align:center;">
+      <a href="capcut.html" tabindex="-1" style="display:flex; flex-direction:column; align-items:center; text-decoration:none; color:white;">
+        <img src="D:\Glory Top up center/capcut.jpg" alt="CapCut Premium" loading="lazy" style="width:80px; height:auto; border-radius:8px; margin-bottom:0.5rem;" />
+        <span>CapCut Premium</span>
+      </a>
+    </li>
+    <li tabindex="0" role="link" aria-label="Netflix Premium" data-service="Netflix Premium" style="list-style:none; width:140px; text-align:center;">
+      <a href="netflix.html" tabindex="-1" style="display:flex; flex-direction:column; align-items:center; text-decoration:none; color:white;">
+        <img src="D:\Glory Top up center/netflix.jpg" alt="Netflix Premium" loading="lazy" style="width:80px; height:auto; border-radius:8px; margin-bottom:0.5rem;" />
+        <span>Netflix Premium</span>
+      </a>
+    </li>
+  </ul>
+</section>
 
   <footer>
-    &copy; 2025 Glory Top-Up Center. All rights reserved.
+    <div class="footer-info">
+      <div>☎ WhatsApp: +977970906981</div>
+      <div>✉ Email: glorytopupcenter@gmail.com</div>
+    </div>
+    <button class="refresh-btn" onclick="location.reload()" aria-label="Refresh page">🏠 Home</button>
+    <p style="margin-top: 1rem; font-size: 0.8rem">&copy; 2025 Glory Top-Up Center. All rights reserved.</p>
   </footer>
+</div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const popup = document.getElementById('popup');
-      const closeBtn = document.getElementById('popup-close-btn');
+<!-- MOBILE VERSION -->
+<div id="mobile-version" role="main" aria-label="Mobile version">
+  <img src="D:\Glory Top up center/glory.jpg" alt="Glory Top-Up Center Logo" class="top-logo" tabindex="0" onclick="location.reload()" aria-label="Refresh page" />
+  <header>Glory Top-Up Center</header>
+  <p class="tagline">FAST • TRUSTED • AFFORDABLE</p>
 
-      // Show popup only if not shown in this session yet
-      if (!sessionStorage.getItem('announcementShown')) {
-        popup.style.display = 'flex';
+  <nav>
+    <a href="#top-up-services-mobile" tabindex="0">Top-Up</a>
+    <a href="#other-services-mobile" tabindex="0">Other</a>
+    <a href="#contact" tabindex="0">Contact</a>
+  </nav>
+
+  <div class="greeting" tabindex="0" aria-live="polite" aria-atomic="true" role="status" title="Tap to see another greeting">Good to see you!</div>
+
+  <div class="anime-container" aria-label="Animated anime girl greeting">
+    <video class="anime-girl" autoplay muted loop playsinline preload="metadata" loading="lazy" aria-hidden="true" tabindex="-1">
+      <source src="D:\Glory Top up center/0623.mp4" type="video/webm" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+ <!-- MOBILE TOP-UP SERVICES -->
+<section id="top-up-services-mobile" class="service-section" aria-label="Top-Up Services for Games">
+  <h2>Top-Up Services</h2>
+  <ul class="services" style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; padding:0;">
+    <li tabindex="0" role="link" aria-label="Top up Free Fire Diamonds" style="list-style:none; width:140px; text-align:center;">
+      <a href="freefire.html" tabindex="-1" style="display:flex; flex-direction:column; align-items:center; text-decoration:none; color:inherit;">
+        <img src="D:\Glory Top up center/freefire.jpg" alt="Free Fire Diamonds" loading="lazy" style="width:80px; height:auto; border-radius:8px; margin-bottom:0.5rem;" />
+        <span>Free Fire Diamonds</span>
+      </a>
+    </li>
+    <li tabindex="0" role="link" aria-label="Top up PUBG UC" style="list-style:none; width:140px; text-align:center;">
+      <a href="pubg.html" tabindex="-1" style="display:flex; flex-direction:column; align-items:center; text-decoration:none; color:inherit;">
+        <img src="D:\Glory Top up center/pubg.jpg" alt="PUBG UC" loading="lazy" style="width:80px; height:auto; border-radius:8px; margin-bottom:0.5rem;" />
+        <span>PUBG UC</span>
+      </a>
+    </li>
+    <li tabindex="0" role="link" aria-label="Top up Mobile Legends" style="list-style:none; width:140px; text-align:center;">
+      <a href="mobilelegends.html" tabindex="-1" style="display:flex; flex-direction:column; align-items:center; text-decoration:none; color:inherit;">
+        <img src="D:\Glory Top up center/mobilelegends.jpg" alt="Mobile Legends" loading="lazy" style="width:80px; height:auto; border-radius:8px; margin-bottom:0.5rem;" />
+        <span>Mobile Legends</span>
+      </a>
+    </li>
+    <li tabindex="0" role="link" aria-label="Top up Call of Duty CP" style="list-style:none; width:140px; text-align:center;">
+      <a href="cod.html" tabindex="-1" style="display:flex; flex-direction:column; align-items:center; text-decoration:none; color:inherit;">
+        <img src="D:\Glory Top up center/cod.jpg" alt="Call of Duty CP" loading="lazy" style="width:80px; height:auto; border-radius:8px; margin-bottom:0.5rem;" />
+        <span>Call of Duty CP</span>
+      </a>
+    </li>
+    <li tabindex="0" role="link" aria-label="Top up Roblox Robux" style="list-style:none; width:140px; text-align:center;">
+      <a href="roblox.html" tabindex="-1" style="display:flex; flex-direction:column; align-items:center; text-decoration:none; color:inherit;">
+        <img src="D:\Glory Top up center/roblox.jpg" alt="Roblox Robux" loading="lazy" style="width:80px; height:auto; border-radius:8px; margin-bottom:0.5rem;" />
+        <span>Roblox Robux</span>
+      </a>
+    </li>
+  </ul>
+</section>
+
+<!-- MOBILE OTHER SERVICES -->
+<section id="other-services-mobile" class="service-section" aria-label="Entertainment and App Subscriptions">
+  <h2>Other Services</h2>
+  <ul class="other-services" style="display:flex; gap:1rem; justify-content:center; padding:0;">
+    <li tabindex="0" role="link" aria-label="Buy CapCut Premium Subscription" style="list-style:none; width:140px; text-align:center;">
+      <a href="capcut.html" tabindex="-1" style="display:flex; flex-direction:column; align-items:center; text-decoration:none; color:inherit;">
+        <img src="D:\Glory Top up center/capcut.jpg" alt="CapCut Premium" loading="lazy" style="width:80px; height:auto; border-radius:8px; margin-bottom:0.5rem;" />
+        <span>CapCut Premium</span>
+      </a>
+    </li>
+    <li tabindex="0" role="link" aria-label="Buy Netflix Premium Subscription" style="list-style:none; width:140px; text-align:center;">
+      <a href="netflix.html" tabindex="-1" style="display:flex; flex-direction:column; align-items:center; text-decoration:none; color:inherit;">
+        <img src="D:\Glory Top up center/netflix.jpg" alt="Netflix Premium" loading="lazy" style="width:80px; height:auto; border-radius:8px; margin-bottom:0.5rem;" />
+        <span>Netflix Premium</span>
+      </a>
+    </li>
+  </ul>
+</section>
+
+
+  <footer>
+    <div class="footer-info">
+      <div>☎ WhatsApp: +977970906981</div>
+      <div>✉ Email: glorytopupcenter@gmail.com</div>
+    </div>
+    <button class="refresh-btn" onclick="location.reload()" aria-label="Refresh page">🏠 Home</button>
+    <p style="margin-top: 1rem; font-size: 0.8rem">&copy; 2025 Glory Top-Up Center. All rights reserved.</p>
+  </footer>
+</div>
+
+<!-- WhatsApp floating button -->
+<div id="whatsapp-btn" tabindex="0" role="button" aria-label="Chat on WhatsApp" title="Chat on WhatsApp"
+     style="
+       position: fixed;
+       bottom: 20px;
+       right: 20px;
+       width: 60px;
+       height: 60px;
+       background-color: #25D366;
+       border-radius: 50%;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+       cursor: pointer;
+       transition: box-shadow 0.3s ease;
+       z-index: 1000;
+       overflow: hidden;
+     "
+     onclick="window.open('https://wa.me/9708065981', '_blank')"
+     onkeypress="if(event.key==='Enter' || event.key===' ') window.open('https://wa.me/9708065981', '_blank')"
+>
+  <!-- Replace the src below with your own image path -->
+  <img src="D:\Glory Top up center/whatsapp.jpg" alt="WhatsApp Logo" style="width:36px; height:36px; object-fit:contain;" />
+</div>
+
+
+<!-- Contact Popup -->
+<div id="contact-popup-overlay" role="dialog" aria-modal="true" aria-labelledby="contact-popup-title" tabindex="-1">
+  <div id="contact-popup">
+    <button id="contact-popup-close" aria-label="Close contact form">&times;</button>
+    <h2 id="contact-popup-title">Contact Us</h2>
+    <form id="contact-form">
+      <label for="name">Name:</label>
+      <input id="name" name="name" type="text" required autocomplete="name" />
+      <label for="email">Email:</label>
+      <input id="email" name="email" type="email" required autocomplete="email" />
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Smooth scrolling for desktop nav links
+  document.querySelectorAll('#desktop-version nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
       }
+    });
+  });
 
-      closeBtn.addEventListener('click', () => {
-        // Fade out effect
-        popup.style.transition = 'opacity 0.4s ease';
-        popup.style.opacity = '0';
+  // Greeting messages & typing effect setup
+  const greetings = [
+    "Good to see you!",
+    "Welcome back!",
+    "Have a great day!",
+    "Ready to top-up?",
+    "Enjoy your games!",
+    "Stay safe & play well!",
+    "Check out new deals!",
+    "Fast and reliable!",
+    "Contact us anytime!",
+    "Thanks for visiting!"
+  ];
 
-        setTimeout(() => {
-          popup.style.display = 'none';
-        }, 400);
+  function getTimeBasedGreeting() {
+    const hour = new Date().getHours();
+    if (hour < 12) return "Good morning!";
+    if (hour < 18) return "Good afternoon!";
+    return "Good evening!";
+  }
 
-        // Mark popup as shown in sessionStorage
-        sessionStorage.setItem('announcementShown', 'true');
+  let lastGreetingIndex = localStorage.getItem('lastGreetingIndex');
+  if (lastGreetingIndex !== null) lastGreetingIndex = parseInt(lastGreetingIndex);
+  else lastGreetingIndex = 0;
+
+  function setupTypingEffect(selector) {
+    const el = document.querySelector(selector);
+    let interval, index = lastGreetingIndex;
+    let charIndex = 0;
+    let talking = false;
+
+    function typeWriter(text) {
+      talking = true;
+      el.textContent = "";
+      charIndex = 0;
+      clearInterval(interval);
+      interval = setInterval(() => {
+        if (charIndex < text.length) {
+          el.textContent += text.charAt(charIndex);
+          charIndex++;
+        } else {
+          clearInterval(interval);
+          talking = false;
+        }
+      }, 50);
+    }
+
+    function saySomething() {
+      index = (index + 1) % greetings.length;
+      localStorage.setItem('lastGreetingIndex', index);
+      typeWriter(greetings[index]);
+    }
+
+    if(index === 0) {
+      typeWriter(getTimeBasedGreeting());
+    } else {
+      typeWriter(greetings[index]);
+    }
+
+    setInterval(() => {
+      if (!talking) saySomething();
+    }, 4000);
+
+    el.addEventListener('click', () => {
+      if (!talking) saySomething();
+    });
+  }
+
+  setupTypingEffect('#desktop-version .greeting');
+  setupTypingEffect('#mobile-version .greeting');
+
+  // Confirmation animation on service click
+  function setupServiceClickConfirmation(version) {
+    const serviceItems = document.querySelectorAll(`#${version} .services li, #${version} .other-services li`);
+    serviceItems.forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.add('clicked');
+        setTimeout(() => item.classList.remove('clicked'), 1000);
+      });
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          item.click();
+        }
       });
     });
-  </script>
+  }
+  setupServiceClickConfirmation('desktop-version');
+  setupServiceClickConfirmation('mobile-version');
 
-</body>
-</html>
+  // WhatsApp button click opens chat
+  document.getElementById('whatsapp-btn').addEventListener('click', () => {
+    window.open('https://wa.me/977970906981', '_blank', 'noopener');
+  });
+  document.getElementById('whatsapp-btn').addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      document.getElementById('whatsapp-btn').click();
+    }
+  });
+
+  // Contact popup open from nav Contact links
+  document.querySelectorAll('nav a[href="#contact"]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('contact-popup-overlay').style.display = 'flex';
+      document.getElementById('contact-popup-overlay').focus();
+    });
+  });
+
+  // Contact popup close button
+  document.getElementById('contact-popup-close').addEventListener('click', () => {
+    document.getElementById('contact-popup-overlay').style.display = 'none';
+  });
+
+  // Close contact popup on ESC
+  document.getElementById('contact-popup-overlay').addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.getElementById('contact-popup-overlay').style.display = 'none';
+    }
+  });
+
+  // Contact form submit
+  document.getElementById('contact-form').addEventListener('submit', e => {
+    e.preventDefault();
+    alert('Thank you for contacting us, ' + e.target.name.value + '! We will get back to you shortly.');
+    document.getElementById('contact-popup-overlay').style.display = 'none';
+    e.target.reset();
+  });
+
+  // Swipe gesture on mobile greeting (left/right tap to cycle)
+  (function setupSwipeGreeting() {
+    const greetingEl = document.querySelector('#mobile-version .greeting');
+    let touchstartX = 0;
+    let touchendX = 0;
+    greetingEl.addEventListener('touchstart', e => {
+      touchstartX = e.changedTouches[0].screenX;
+    });
+    greetingEl.addEventListener('touchend', e => {
+      touchendX = e.changedTouches[0].screenX;
+      if (touchendX < touchstartX - 30 || touchendX > touchstartX + 30) {
+        greetingEl.click();
+      }
+    });
+  })();
+
+</script>
+
